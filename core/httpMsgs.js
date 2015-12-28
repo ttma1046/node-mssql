@@ -1,6 +1,5 @@
 var settings = require("../settings");
 
-exports.showHome = 
 exports.show500 = function (req, resp, err) {
 	if (settings.httpMsgsFormat === "HTML") {
 		resp.writeHead(500, "Internal Error occurred", {"Content-Type": "text/html"});
@@ -16,9 +15,11 @@ exports.show500 = function (req, resp, err) {
 
 exports.sendJson = function (req, resp, data) {
     resp.writeHead(200, {"Content-Type": "application/json"});
+    
     if (data) {
     	resp.write(JSON.stringify(data));
     }
+    
     resp.end();  
 };
 
@@ -72,7 +73,6 @@ exports.showHome = function (req, resp) {
         	{url: "/employees", operations: "GET", description: "To List All Employees"},
         	{url: "/employees/<empno>", operations: "GET", description: "To search for an employee"}
         	]));
-        }
     }
 
     resp.end();
